@@ -8,7 +8,7 @@ void setup() {
 }
 
 void loop() {
-  // Toggle LED if data is being sent to bluetooth
+  // Toggle LED when data is sent to bluetooth
   if (EEBlue.available()) {
     Serial.write(EEBlue.read());
     Serial.println(!digitalRead(LED_BUILTIN));
