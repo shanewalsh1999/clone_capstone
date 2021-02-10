@@ -22,7 +22,7 @@ fopen(b);
 
 %% Toggle LED
 while 1 
-    x = input('Press ENTER to toggle LED (ctrl+C to exit)');
+    x = input('Press ENTER to toggle relay (ctrl+C to exit)');
    
     % Send data to HC-05. This toggles the state of the LED.
     fwrite(b,uint8(1));
