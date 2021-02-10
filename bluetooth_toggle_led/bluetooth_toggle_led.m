@@ -24,7 +24,6 @@ fopen(b);
 while 1 
     x = input('Press ENTER to toggle LED (ctrl+C to exit)');
    
-    % Command to loggle LED over bluetooth (could be any arbitrary input, not
-    %   just uint8(1))
+    % Send data to HC-05. This toggles the state of the LED.
     fwrite(b,uint8(1));
 end
