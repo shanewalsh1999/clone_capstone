@@ -3,8 +3,6 @@
 
 SoftwareSerial EEBlue(0, 1); // RX | TX
 
-
-
 void setup() {
   Serial.begin(9600);
   pinMode(ledPin, OUTPUT);
