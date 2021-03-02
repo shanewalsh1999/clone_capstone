@@ -1,6 +1,9 @@
 %% Notes
 % HC-05 must be connected over Bluetooth
 
+% Get RemoteID (btspp://...)
+% instrhwinfo('Bluetooth')
+
 % Get channel num
 % instrhwinfo('Bluetooth','HC-05')
 
@@ -14,15 +17,18 @@ if exist('b','var') == 1
     clear b;
 end
 
-% Create bluetooth object for HC-05 (Bluetooth module attached to Arduino)
-b = Bluetooth('btspp://98D371FDB654', 1);
+% Create bluetooth object for old HC-05 (Bluetooth module attached to Arduino)
+% b = Bluetooth('btspp://98D371FDB654', 1);
+
+% Create bluetooth object for new HC-05
+b = Bluetooth('btspp://00140305EF33', 1);
 
 % Allow MATLAB to send data to HC-05
 fopen(b);
 
 %% Toggle LED
 while 1 
-    x = input('Press ENTER to toggle relay (ctrl+C to exit)');
+    x = input('Press ENTER to toggle LED (ctrl+C to exit)');
    
     % Send data to HC-05. This toggles the state of the LED.
     fwrite(b,uint8(1));
