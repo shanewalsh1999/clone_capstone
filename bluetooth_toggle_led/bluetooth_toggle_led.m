@@ -1,8 +1,8 @@
 %% Notes
 % HC-05 must be connected over Bluetooth
 
-% Get RemoteID (btspp://...)
-% instrhwinfo('Bluetooth')
+% To get RemoteID (btspp://...),
+%   instrhwinfo('Bluetooth')
 
 % Get channel num
 % instrhwinfo('Bluetooth','HC-05')
@@ -28,6 +28,7 @@ fopen(b);
 
 %% Toggle LED
 while 1 
+
     x = input('Press ENTER to toggle LED (ctrl+C to exit)');
    
     % Send data to HC-05. This toggles the state of the LED.
