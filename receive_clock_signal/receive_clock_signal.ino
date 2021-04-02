@@ -1,6 +1,16 @@
 #include <SoftwareSerial.h>
 SoftwareSerial EEBlue(0, 1); // RX | TX
 
+// ---- frequencyID key ----
+//  1 => 30.64 Hz 
+//  2 => 61.04 Hz
+//  3 => 122.07 Hz
+// -------------------------
+
+// ---- pulseWidthID key ----
+// pulse width (us) = pulseWidthID*10^6/(255*frequency)
+// --------------------------
+
 static const int lowFreqPin = 3;
 static const int medFreqPin = 6;
 static const int highFreqPin = 9;
