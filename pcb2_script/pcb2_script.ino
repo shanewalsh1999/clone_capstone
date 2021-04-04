@@ -1,20 +1,3 @@
-/*
-  LED
-
-  This example creates a BLE peripheral with service that contains a
-  characteristic to control an LED.
-
-  The circuit:
-  - Arduino MKR WiFi 1010, Arduino Uno WiFi Rev2 board, Arduino Nano 33 IoT,
-    Arduino Nano 33 BLE, or Arduino Nano 33 BLE Sense board.
-
-  You can use a generic BLE central app, like LightBlue (iOS and Android) or
-  nRF Connect (Android), to interact with the services and characteristics
-  created in this sketch.
-
-  This example code is in the public domain.
-*/
-
 #include <ArduinoBLE.h>
 #include <SPI.h>
 
@@ -62,9 +45,9 @@ void setup() {
   BLE.addService(muscleVoltageService);
 
   // set the initial value for the characeristic:
-  muscleOneVoltage.writeValue(0);
-  muscleTwoVoltage.writeValue(0);
   muscleThreeVoltage.writeValue(0);
+  muscleTwoVoltage.writeValue(0);
+  muscleOneVoltage.writeValue(0);
 
   // start advertising
   BLE.advertise();
