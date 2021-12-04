@@ -1,6 +1,6 @@
 static const int cyclesOn = 256;
-static const int muscleOneThreshold = 700;
-static const int muscleTwoThreshold = 700;
+static const int muscleOneThreshold = 300;
+static const int muscleTwoThreshold = 300;
 
 static const int muscleOnePin = A2;
 static const int muscleTwoPin = A1;
