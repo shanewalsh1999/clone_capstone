@@ -5,14 +5,12 @@
 byte address = 0x00;
 static const int muscleOneVoltagePin = 9; // D9
 static const int muscleTwoVoltagePin = 8; // D8
-static const int muscleThreeVoltagePin = 7; // D7
 
 // BLE Muscle Voltage Service
 BLEService muscleVoltageService("19B10000-E8F2-537E-4F6C-D204768A1214"); 
 // BLE Muscle Voltage characteristics - custom 16-bit UUIDs, read and writable by central
 BLEUnsignedIntCharacteristic muscleOneVoltage("00B1", BLERead | BLEWrite);
 BLEUnsignedIntCharacteristic muscleTwoVoltage("00B2", BLERead | BLEWrite);
-BLEUnsignedIntCharacteristic muscleThreeVoltage("00B3", BLERead | BLEWrite);
 
 void setup() {
   Serial.begin(9600);
@@ -20,7 +18,6 @@ void setup() {
   // Set pin modes
   pinMode(muscleOneVoltagePin, OUTPUT);
   pinMode(muscleTwoVoltagePin, OUTPUT);
-  pinMode(muscleThreeVoltagePin, OUTPUT);
 
   SPI.begin();
   
@@ -39,13 +36,11 @@ void setup() {
     // add the characteristic to the service
   muscleVoltageService.addCharacteristic(muscleOneVoltage);
   muscleVoltageService.addCharacteristic(muscleTwoVoltage);
-  muscleVoltageService.addCharacteristic(muscleThreeVoltage);
 
   // add service
   BLE.addService(muscleVoltageService);
 
   // set the initial value for the characeristic:
-  muscleThreeVoltage.writeValue(0);
   muscleTwoVoltage.writeValue(0);
   muscleOneVoltage.writeValue(0);
 
@@ -69,7 +64,6 @@ void loop() {
     while (central.connected()) {
       if (muscleOneVoltage.written()) { updateMuscleOneVoltage(muscleOneVoltage.value()); }
       if (muscleTwoVoltage.written()) { updateMuscleTwoVoltage(muscleTwoVoltage.value()); }
-      if (muscleThreeVoltage.written()) { updateMuscleThreeVoltage(muscleThreeVoltage.value()); }
     }
 
     // when the central disconnects, print it out:
@@ -90,11 +84,4 @@ void updateMuscleTwoVoltage(int value) {
   SPI.transfer(address);
   SPI.transfer(value);
   digitalWrite(muscleTwoVoltagePin, HIGH);
-}
-
-void updateMuscleThreeVoltage(int value) {
-  digitalWrite(muscleThreeVoltagePin, LOW);
-  SPI.transfer(address);
-  SPI.transfer(value);
-  digitalWrite(muscleThreeVoltagePin, HIGH);
 }
